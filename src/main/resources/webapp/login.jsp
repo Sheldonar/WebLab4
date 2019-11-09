@@ -7,6 +7,6 @@
     <title>login</title>
 </head>
 <body>
-hello, epta!
+hello!
 </body>
 </html>
