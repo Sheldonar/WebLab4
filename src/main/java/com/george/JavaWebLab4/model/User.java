@@ -15,6 +15,13 @@ public class User {
     public String login;
     public String password;
 
+    public User(){}
+
+    public User(String login, String password){
+        this.login = login;
+        this.password = password;
+    }
+
     public Long getId() {
         return Id;
     }
@@ -42,9 +49,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "Id=" + Id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                "login='" + login + '\'' +
                 '}';
     }
 }
