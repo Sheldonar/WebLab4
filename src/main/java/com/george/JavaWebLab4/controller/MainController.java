@@ -20,15 +20,26 @@ public class MainController {
 
     @GetMapping("/login")
     public ModelAndView getRequest(){
+        //User user = new User();
         ModelAndView modelAndView = new ModelAndView("login.jsp");
+        modelAndView.addObject("user", new User());
         return modelAndView;
     }
 
     @PostMapping("/login")
-    public RedirectView postRequest(@ModelAttribute String login, @ModelAttribute String password){
-        User user = new User(login, password);
-        userRepository.save(user);
-        return new RedirectView("/registered_users");
+    public RedirectView postRequest(@ModelAttribute User user){
+        if (userRepository.existsByLogin(user.getLogin())){
+            if(userRepository.findByLogin(user.getLogin()).getPassword().equals(user.getPassword())) {
+                //userRepository.save(user);
+                return new RedirectView("/registered_users");
+            }
+            else
+                return new RedirectView("/login");
+        }
+        else{
+            userRepository.save(user);
+            return new RedirectView("/registered_users");
+        }
     }
 
     @GetMapping("/registered_users")

@@ -48,8 +48,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "login='" + login + '\'' +
-                '}';
+        return "User login: " + login;
     }
 }
